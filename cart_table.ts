@@ -2,6 +2,7 @@ import { Knex } from "knex";
 const tableName = "cart";
 
 export async function up(knex: Knex): Promise<void> {
+
     return knex.schema.createTable(tableName, (table: Knex.TableBuilder) => {
         table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()')); //since were using postgres
         table.uuid("userId").notNullable();
