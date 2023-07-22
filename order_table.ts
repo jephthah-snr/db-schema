@@ -17,6 +17,18 @@ export async function up(knex: Knex): Promise<void> {
       .enum("deliveryStatus", ["pending", "ongoing", "delivered"])
       .defaultTo("pending");
     table.string("totalItems").notNullable();
+    table.uuid("userId").notNullable();
+    table
+      .foreign("userId")
+      .references("id")
+      .inTable("users")
+      .onUpdate("CASCADE");
+    table.uuid("productId").nullable();
+    table
+      .foreign("productId")
+      .references("id")
+      .inTable("products")
+      .onUpdate("CASCADE");
     table.timestamps(true, true);
   });
 }
