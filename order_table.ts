@@ -5,7 +5,7 @@ export async function up(knex: Knex): Promise<void> {
   return knex.schema.createTable(tableName, (table: Knex.TableBuilder) => {
     table.uuid("id").primary().defaultTo(knex.raw("uuid_generate_v4()")); //since were using postgres
     table.string("address").notNullable();
-    table.string("amount").notNullable();
+    table.string("totalAmount").notNullable();
     table.string("quantity").notNullable();
     table
       .enum("paymentMethod", ["cash_on_pickup", "cash_on_delivery", "card"])
@@ -14,7 +14,7 @@ export async function up(knex: Knex): Promise<void> {
       .enum("paymentStatus", ["pending", "failed", "completed"])
       .defaultTo("pending");
     table
-      .enum("status", ["pending", "ongoing", "delivered"])
+      .enum("deliveryStatus", ["pending", "ongoing", "delivered"])
       .defaultTo("pending");
     table.string("totalItems").notNullable();
     table.timestamps(true, true);
