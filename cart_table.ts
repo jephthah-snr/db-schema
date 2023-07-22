@@ -8,6 +8,7 @@ export async function up(knex: Knex): Promise<void> {
     table.string("value").notNullable();
     table.boolean("is_verified").defaultTo(true)
     table.enum("name", ["value1", "value2"])
+    table.foreign('productId').references('products.id').onUpdate('CASCADE')
     table.timestamps(true, true);
   });
 }
