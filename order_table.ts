@@ -18,6 +18,8 @@ export async function up(knex: Knex): Promise<void> {
       .defaultTo("pending");
     table.string("totalItems").notNullable();
     table.uuid("userId").notNullable();
+    table.boolean("shipping").defaultTo(false);
+    table.enum("shippingType", ["air", "train", "land", "ocean"]);
     table
       .foreign("userId")
       .references("id")
