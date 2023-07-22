@@ -4,7 +4,6 @@ const tableName = "users";
 export async function up(knex: Knex): Promise<void> {
   return knex.schema.createTable(tableName, (table: Knex.TableBuilder) => {
     table.uuid("id").primary().defaultTo(knex.raw("uuid_generate_v4()")); //since were using postgres
-    table.uuid("id").primary();
     table.string("fullName").notNullable();
     table.string("email").notNullable();
     table.string("password").notNullable();
