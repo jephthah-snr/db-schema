@@ -10,6 +10,7 @@ export async function up(knex: Knex): Promise<void> {
     table.text("description");
     table.text("bannerImage");
     table.text("images");
+    table.integer("rating");
     table.integer("quantity");
     table.integer("discountPercentage");
     table.integer("discountPrice");
